@@ -2,8 +2,6 @@ import 'package:challenge/models/item.dart';
 import 'package:challenge/pages/home/widgets/toggle_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'draggable_expanded_view_content.dart';
 import 'horizontal_rule.dart';
 import 'mini_button.dart';
 
@@ -150,25 +148,10 @@ class _DraggableViewState extends State<DraggableView> with SingleTickerProvider
                     ),
                   ],
                 ),
-                if (height != null)
-                  Expanded(
-                    child: Opacity(
-                      opacity: _animation.value,
-                      child: AnimatedSwitcher(
-                        duration: Duration(milliseconds: 200),
-                        child: _animation.value > 0.8
-                            ? child
-                            : Container(
-                                height: 0,
-                              ),
-                      ),
-                    ),
-                  )
               ],
             ),
           );
         },
-        child: DraggableExpandedViewContent(),
       ),
     );
   }
