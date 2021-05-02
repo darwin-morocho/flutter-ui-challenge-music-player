@@ -92,66 +92,69 @@ class _DraggableViewState extends State<DraggableView> with SingleTickerProvider
     return GestureDetector(
       onVerticalDragUpdate: _onVerticalDragUpdate,
       onVerticalDragEnd: _onVerticalDragEnd,
-      child: AnimatedBuilder(
-        animation: _animation,
-        builder: (_, child) {
-          return Container(
-            key: _globalKey,
-            height: height,
-            width: width,
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Color(0xff4C65F6),
-              image: DecorationImage(
-                image: AssetImage(widget.activeItem.bg),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  Color(0xff4C65F6).withOpacity(0.2),
-                  BlendMode.dstATop,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (_, child) {
+            return Container(
+              key: _globalKey,
+              height: height,
+              width: width,
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Color(0xff4C65F6),
+                image: DecorationImage(
+                  image: AssetImage(widget.activeItem.bg),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Color(0xff4C65F6).withOpacity(0.2),
+                    BlendMode.dstATop,
+                  ),
                 ),
               ),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                HorizontalRule(
-                  animationValue: _animation.value,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    MiniButton(
-                      animation: _animation,
-                      child: Icon(
-                        Icons.replay_rounded,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      padding: EdgeInsets.only(right: 20),
-                    ),
-                    ToggleButton(
-                      animationValue: _animation.value,
-                      onPressed: _toggle,
-                      activeItem: widget.activeItem,
-                    ),
-                    MiniButton(
-                      animation: _animation,
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundImage: AssetImage(
-                          widget.activeItem.avatar,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HorizontalRule(
+                    animationValue: _animation.value,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MiniButton(
+                        animation: _animation,
+                        child: Icon(
+                          Icons.replay_rounded,
+                          color: Colors.white,
+                          size: 30,
                         ),
+                        padding: EdgeInsets.only(right: 20),
                       ),
-                      padding: EdgeInsets.only(left: 20),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
+                      ToggleButton(
+                        animationValue: _animation.value,
+                        onPressed: _toggle,
+                        activeItem: widget.activeItem,
+                      ),
+                      MiniButton(
+                        animation: _animation,
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage(
+                            widget.activeItem.avatar,
+                          ),
+                        ),
+                        padding: EdgeInsets.only(left: 20),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
